@@ -24,7 +24,7 @@ def create_graph():
 
     nx.draw_networkx_labels(G, pos, font_size=10, font_color='black')
 
-    plt.title('Graph of the Pipeline Network with Improved Spacing')
+    plt.title('Grafo del dataset de tuberias')
 
     img_path = 'static/graph.png'
     plt.savefig(img_path)
