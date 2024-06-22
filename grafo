@@ -1,0 +1,11 @@
+graph grafo {
+	graph [layout=dot]
+	node [color=orangered fontcolor=mediumslateblue fontname=monospace fontsize=8 height=0.1 width=0.1]
+	edge [color=gray fontname=monospace fontsize=8]
+	6
+	17
+	6 -- 17 [label=172.77 color=orange penwidth=2]
+	17
+	4
+	17 -- 4 [label=112.67 color=orange penwidth=2]
+}
