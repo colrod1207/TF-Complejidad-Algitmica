@@ -42,3 +42,27 @@ def dijkstra(G, s):
                         hq.heappush(pqueue, (f, v))
     
     return path, cost    
+
+def shortest_path_between_nodes(G, start_node, end_node):
+    path, cost = dijkstra(G, start_node)
+    if cost[end_node] == math.inf:
+        return f"No hay camino desde {start_node} hasta {end_node}.", None, None
+    
+    shortest_path = []
+    current_node = end_node
+    while current_node != -1:
+        shortest_path.append(current_node)
+        current_node = path[current_node]
+    
+    shortest_path.reverse()
+    
+    steps_with_weights = []
+    for i in range(len(shortest_path) - 1):
+        u = shortest_path[i]
+        v = shortest_path[i + 1]
+        weight = next(w for n, w in G[u] if n == v)
+        steps_with_weights.append(f"{u} --({weight})--> {v}")
+    
+    steps = " -> ".join(steps_with_weights)
+    
+    return shortest_path, cost[end_node], steps
