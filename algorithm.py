@@ -20,3 +20,25 @@ G = create_adj_list(df)
 
 for key, value in G.items():
     print(f"{key}: {value}")
+
+def dijkstra(G, s):
+    n = len(G)
+    visited = {k: False for k in G.keys()}
+    path = {k: -1 for k in G.keys()}
+    cost = {k: math.inf for k in G.keys()}
+    
+    cost[s] = 0
+    pqueue = [(0, s)]
+    while pqueue:
+        g, u = hq.heappop(pqueue)
+        if not visited[u]:
+            visited[u] = True
+            for v, w in G[u]:
+                if not visited[v]:
+                    f = g + w
+                    if f < cost[v]:
+                        cost[v] = f
+                        path[v] = u
+                        hq.heappush(pqueue, (f, v))
+    
+    return path, cost    
