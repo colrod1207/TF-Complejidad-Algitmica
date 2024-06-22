@@ -79,3 +79,9 @@ def get_valid_node(prompt, G):
                 print(f"El nodo {node} no existe en el grafo. Inténtelo de nuevo.")
         except ValueError:
             print("Entrada no válida. Por favor, ingrese un número entero.")
+
+start_node = get_valid_node("Ingrese el nodo de inicio: ", G)
+end_node = get_valid_node("Ingrese el nodo de destino: ", G)
+
+shortest_path, min_cost, steps = shortest_path_between_nodes(G, start_node, end_node)
+print(f"El camino más corto desde {start_node} hasta {end_node} es: {steps} con un costo operativo mínimo de: {min_cost}")
