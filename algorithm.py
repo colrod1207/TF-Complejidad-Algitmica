@@ -66,3 +66,16 @@ def shortest_path_between_nodes(G, start_node, end_node):
     steps = " -> ".join(steps_with_weights)
     
     return shortest_path, cost[end_node], steps
+
+G = create_adj_list(df)
+
+def get_valid_node(prompt, G):
+    while True:
+        try:
+            node = int(input(prompt))
+            if node in G:
+                return node
+            else:
+                print(f"El nodo {node} no existe en el grafo. Inténtelo de nuevo.")
+        except ValueError:
+            print("Entrada no válida. Por favor, ingrese un número entero.")
