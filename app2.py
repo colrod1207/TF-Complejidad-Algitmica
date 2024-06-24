@@ -13,7 +13,6 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import networkx as nx
 
-# Ajusta esta ruta si es necesario
 os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin'
 
 dataset = 'dataset.csv'
@@ -119,7 +118,7 @@ def create_graph():
         G.add_edge(row['Start_Node_ID'], row['End_Node_ID'], length=row['Pipe_Length'], capacity=row['Pipe_Capacity'],
                    cost=row['Operation_Cost'])
 
-    plt.figure(figsize=(30, 30))  # Ajusta el tamaño de la figura para que sea más grande
+    plt.figure(figsize=(30, 30))
     pos = nx.spring_layout(G, seed=42, k=0.1)
 
     nx.draw_networkx_nodes(G, pos, node_size=50, node_color='skyblue')
@@ -137,10 +136,10 @@ def create_graph():
 def show_full_graph():
     graph_path = create_graph()
     img = mpimg.imread(graph_path)
-    plt.figure(figsize=(10, 10))  # Ajusta el tamaño de la ventana que muestra el grafo completo
+    plt.figure(figsize=(10, 10))
     plt.imshow(img)
     plt.axis('off')
-    canvas.get_tk_widget().pack_forget()  # Elimina el canvas anterior
+    canvas.get_tk_widget().pack_forget()
     new_canvas = FigureCanvasTkAgg(plt.gcf(), master=frame)
     new_canvas.draw()
     new_canvas.get_tk_widget().grid(row=6, column=0, columnspan=2)
@@ -156,10 +155,10 @@ def calculate_and_show_path():
     if shortest_path:
         graph_path = drawG_al(G, shortest_path)
         img = mpimg.imread(graph_path)
-        plt.figure(figsize=(5, 4))  # Mantiene el tamaño original de la figura para el camino más corto
+        plt.figure(figsize=(5, 4))
         plt.imshow(img)
         plt.axis('off')
-        canvas.get_tk_widget().pack_forget()  # Elimina el canvas anterior
+        canvas.get_tk_widget().pack_forget()
         new_canvas = FigureCanvasTkAgg(plt.gcf(), master=frame)
         new_canvas.draw()
         new_canvas.get_tk_widget().grid(row=6, column=0, columnspan=2)
@@ -170,18 +169,14 @@ def calculate_and_show_path():
         messagebox.showerror("Error", "No hay camino entre los nodos especificados")
 
 
-# Crear la ventana principal
-# Crear la ventana principal
 root = tk.Tk()
 root.title("Trabajo Final de Algoritmos")
 root.geometry("1200x900")
 root.configure(bg="#f0f0f0")
 
-# Configuración de la cuadrícula principal
 root.grid_columnconfigure(0, weight=1)
 root.grid_rowconfigure(0, weight=1)
 
-# Frame principal
 frame = ttk.Frame(root, padding="10")
 frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
 frame.grid_columnconfigure(0, weight=1)
@@ -189,38 +184,30 @@ frame.grid_columnconfigure(1, weight=1)
 frame.grid_rowconfigure(6, weight=1)
 
 
-# Título
 title_label = ttk.Label(frame, text="Trabajo Final de Algoritmos", font=("Helvetica", 16, "bold"))
 title_label.grid(row=0, column=0, columnspan=2, pady=(0, 10))
 
-# Entrada para el nodo de inicio
 start_node_label = ttk.Label(frame, text="Nodo de Inicio:", font=("Helvetica", 18))
 start_node_label.grid(row=1, column=0, sticky=tk.W, pady=(0, 5))
 start_node_entry = ttk.Entry(frame, width=10, font=("Helvetica", 12))
 start_node_entry.grid(row=1, column=1, sticky=tk.W, pady=(0, 5))
 
-# Entrada para el nodo de fin
 end_node_label = ttk.Label(frame, text="Nodo de Fin:", font=("Helvetica", 12))
 end_node_label.grid(row=2, column=0, sticky=tk.W, pady=(0, 5))
 end_node_entry = ttk.Entry(frame, width=10, font=("Helvetica", 12))
 end_node_entry.grid(row=2, column=1, sticky=tk.W, pady=(0, 5))
 
-# Botón para calcular el camino más corto
 calculate_button = ttk.Button(frame, text="Calcular Camino Más Corto", command=calculate_and_show_path)
 calculate_button.grid(row=3, column=0, columnspan=2, pady=(10, 5))
 
-# Botón para mostrar el grafo completo
 show_graph_button = ttk.Button(frame, text="Mostrar Grafo Completo", command=show_full_graph)
 show_graph_button.grid(row=4, column=0, columnspan=2, pady=(5, 10))
 
-# Etiqueta para mostrar el resultado
 result_label = ttk.Label(frame, text="", wraplength=400, font=("Helvetica", 12))
 result_label.grid(row=5, column=0, columnspan=2, pady=(0, 10))
 
-# Figura de Matplotlib para mostrar el grafo
 fig = plt.figure(figsize=(5, 4))
 canvas = FigureCanvasTkAgg(fig, master=frame)
 canvas.get_tk_widget().grid(row=6, column=0, columnspan=2, sticky=(tk.W, tk.E, tk.N, tk.S))
 
-# Iniciar el bucle principal de la interfaz
 root.mainloop()
