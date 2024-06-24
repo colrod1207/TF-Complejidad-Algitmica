@@ -2,10 +2,13 @@ graph grafo {
 	graph [layout=dot]
 	node [color=orangered fontcolor=mediumslateblue fontname=monospace fontsize=8 height=0.1 width=0.1]
 	edge [color=gray fontname=monospace fontsize=8]
-	4
-	24
-	4 -- 24 [label=102.72 color=orange penwidth=2]
-	24
-	1500
-	24 -- 1500 [label=347.2692426023486 color=orange penwidth=2]
+	20
+	30
+	20 -- 30 [label=778.68 color=orange penwidth=2]
+	30
+	5
+	30 -- 5 [label=875.97 color=orange penwidth=2]
+	5
+	1499
+	5 -- 1499 [label=356.9592057393709 color=orange penwidth=2]
 }
