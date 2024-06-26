@@ -1,14 +1,8 @@
 graph grafo {
 	graph [layout=dot]
 	node [color=orangered fontcolor=mediumslateblue fontname=monospace fontsize=8 height=0.1 width=0.1]
-	edge [color=gray fontname=monospace fontsize=8]
-	20
-	30
-	20 -- 30 [label=778.68 color=orange penwidth=2]
-	30
+	edge [color=gray fontsize=8]
 	5
-	30 -- 5 [label=875.97 color=orange penwidth=2]
-	5
-	1499
-	5 -- 1499 [label=356.9592057393709 color=orange penwidth=2]
+	7
+	5 -- 7 [label=195.51 color=orange penwidth=2]
 }
