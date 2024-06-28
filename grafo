@@ -2,7 +2,10 @@ graph grafo {
 	graph [layout=dot]
 	node [color=orangered fontcolor=mediumslateblue fontname=monospace fontsize=8 height=0.1 width=0.1]
 	edge [color=gray fontsize=8]
-	5
-	7
-	5 -- 7 [label=195.51 color=orange penwidth=2]
+	3
+	14
+	3 -- 14 [label=50030.876 color=orange penwidth=2]
+	14
+	454
+	14 -- 454 [label=142446.208 color=orange penwidth=2]
 }

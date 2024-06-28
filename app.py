@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin'
 
-dataset = 'dataset.csv'
+dataset = 'dataset2.0.csv'
 df = pd.read_csv(dataset)
 
 
@@ -26,9 +26,9 @@ def create_adj_list():
     start_time = time.time()
     G = defaultdict(list)
     for _, row in df.iterrows():
-        start_node = int(row['Start_Node_ID'])
-        end_node = int(row['End_Node_ID'])
-        operation_cost = row['Operation_Cost']
+        start_node = int(row['ID_Nodo_Inicio'])
+        end_node = int(row['ID_Nodo_Final'])
+        operation_cost = row['Costo_de_Operacion']
         G[start_node].append((end_node, operation_cost))
         G[end_node].append((start_node, operation_cost))
     print(f"Lista de adyacencia creada en {time.time() - start_time:.2f} segundos.")
@@ -117,10 +117,17 @@ def create_graph():
     complete_dataset = pd.read_csv('dataset.csv', delimiter=',')
 
     G = nx.DiGraph()
-
-    for _, row in complete_dataset.iterrows():
-        G.add_edge(row['Start_Node_ID'], row['End_Node_ID'], length=row['Pipe_Length'], capacity=row['Pipe_Capacity'],
-                   cost=row['Operation_Cost'])
+    for index, row in df.iterrows():
+        try:
+            G.add_edge(row['ID_Nodo_Inicio'], row['ID_Nodo_Final'],
+                length=row['Longitud_(km)'],
+                capacity=row['Flujo_Necesario_(m3)'],
+                energy_cost=row['Costo_de_energia'],
+                labor_cost=row['Mano_de_obra'],
+                material=row['Material'],
+                operation_cost=row['Costo_de_Operacion'])
+        except KeyError as e:
+            print(f"Error al acceder a la columna: {e}")
 
     plt.figure(figsize=(30, 30))
     pos = nx.spring_layout(G, seed=42, k=0.1)
